@@ -24,6 +24,7 @@ import matplotlib.pyplot as plt
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RESULTS = os.path.join(PROJECT_ROOT, "results", "benchmark_latest.csv")
 FIGDIR = os.path.join(PROJECT_ROOT, "paper", "figures")
+os.makedirs(FIGDIR, exist_ok=True)
 
 PRETTY = {
     "drimaps": "\\textsc{Drimaps}", "pibt": "PIBT",
@@ -69,6 +70,7 @@ def sub(rows, **filt):
 
 
 def write(path: str, content: str) -> None:
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as f:
         f.write(content)
     print(f"  wrote {os.path.relpath(path, PROJECT_ROOT)}")
