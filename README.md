@@ -165,7 +165,7 @@ no-minimal).
 
 ## Running Experiments
 
-The canonical pipeline is the benchmark runner followed by asset generation:
+Run the benchmark suite or the cross-validation script:
 
 ```bash
 # Full benchmark: 8 maps x agent counts {10,20,30,40,60,80} x 5 seeds x methods
@@ -175,16 +175,9 @@ python experiments/run_benchmark.py
 # Quick smoke run (2 maps, 2 agent counts, main methods, 1 seed)
 python experiments/run_benchmark.py --quick
 
-# Regenerate all paper tables (paper/figures/table*.tex) and figures
-# (paper/figures/fig*.pdf/png) from the CSV above.
-python analysis/make_paper_assets.py
-
 # Cross-validate the runtime-repair finding inside the interactive sim
 python experiments/sim_crossval.py
 ```
-
-Every number in the paper traces back to a row in
-`results/benchmark_latest.csv` produced by `run_benchmark.py`.
 
 ## Results (summary)
 
@@ -218,8 +211,7 @@ interactive sim raises ISR from 0.44 (greedy, no repair) to 0.59
 
 ## Reproducibility
 
-To reproduce everything end-to-end (install, tests, benchmark, paper assets,
-sim cross-validation), run:
+To run the full pipeline end-to-end (installation, tests, benchmarking, and cross-validation), run:
 
 ```bash
 ./reproduce.sh
@@ -254,19 +246,8 @@ DRIMAPS/
 │   ├── wrappers.py         # Utility wrappers (incl. trajectory recording)
 │   └── env_config.py       # Configuration
 ├── experiments/            # Benchmark + sim cross-validation
-├── analysis/               # Paper asset generation
-├── tests/                  # Test suite (96 tests)
-└── paper/                  # IEEE conference paper
-```
-
-## Citation
-
-```bibtex
-@article{drimaps2026,
-  title={DRIMAPS: Runtime Deadlock Resolution for Multi-Agent Path Finding},
-  author={Mir, Ubaid Mushtaq},
-  year={2026}
-}
+├── analysis/               # Result analysis and tools
+└── tests/                  # Test suite (96 tests)
 ```
 
 ## License
