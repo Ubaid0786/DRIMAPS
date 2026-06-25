@@ -195,7 +195,7 @@ These are referenced in our baseline comparisons.
 ```bibtex
 @article{drimaps2024,
   title={DRIMAPS: Runtime Adaptive Dependency Resolution for Deadlock-Resilient Multi-Agent Path Finding},
-  author={Anonymous and Authors},
+  author={Mir, Ubaid Mushtaq},
   journal={Under Review},
   year={2024}
 }
@@ -205,4 +205,4 @@ These are referenced in our baseline comparisons.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
-For citation or publication queries, contact: mapf@research.org
+For citation or publication queries, contact: ubaidmushtaq0786@gmail.com

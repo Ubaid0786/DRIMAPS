@@ -212,7 +212,7 @@ If you use DRIMAPS in your research, please cite:
 ```bibtex
 @article{drimaps2024,
   title={DRIMAPS: Runtime Adaptive Dependency Resolution for Deadlock-Resilient Multi-Agent Path Finding},
-  author={Anonymous and Authors},
+  author={Mir, Ubaid Mushtaq},
   journal={Under Review},
   year={2024}
 }

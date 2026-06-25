@@ -3,11 +3,11 @@ title: "DRIMAPS: Runtime Adaptive Dependency Resolution for Deadlock-Resilient M
 message: "If you use DRIMAPS in your research, please cite it using these metadata."
 type: software
 authors:
-  - family-names: "Anonymous"
-    given-names: "Authors"
-    affiliation: "Research Institution"
+  - family-names: "Mir"
+    given-names: "Ubaid Mushtaq"
+    affiliation: "University of Kashmir & SMM Govt. Degree College Anantnag, Jammu & Kashmir, India"
 date-released: 2024-06-21
-repository-code: "https://github.com/your-username/drimaps"
+repository-code: "https://github.com/Ubaid0786/DRIMAPS"
 license: Apache-2.0
 keywords:
   - "multi-agent-pathfinding"
@@ -21,9 +21,9 @@ doi: "your-doi-here"
 preferred-citation:
   type: conference-paper
   authors:
-    - family-names: "Anonymous"
-      given-names: "Authors"
-      affiliation: "Research Institution"
+    - family-names: "Mir"
+      given-names: "Ubaid Mushtaq"
+      affiliation: "University of Kashmir & SMM Govt. Degree College Anantnag, Jammu & Kashmir, India"
   title: "DRIMAPS: Runtime Adaptive Dependency Resolution for Deadlock-Resilient Multi-Agent Path Finding"
   conference:
     name: "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"

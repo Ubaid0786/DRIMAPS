@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "Apache License 2.0"}
 authors = [
-    {name = "MAPF Research Team", email = "mapf@research.org"},
+    {name = "Ubaid Mushtaq Mir", email = "ubaidmushtaq0786@gmail.com"},
 ]
 keywords = [
     "multi-agent-pathfinding",
@@ -59,10 +59,10 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-username/drimaps"
-Documentation = "https://github.com/your-username/drimaps/wiki"
-Repository = "https://github.com/your-username/drimaps.git"
-"Bug Tracker" = "https://github.com/your-username/drimaps/issues"
+Homepage = "https://github.com/Ubaid0786/DRIMAPS"
+Documentation = "https://github.com/Ubaid0786/DRIMAPS/wiki"
+Repository = "https://github.com/Ubaid0786/DRIMAPS.git"
+"Bug Tracker" = "https://github.com/Ubaid0786/DRIMAPS/issues"
 
 [tool.setuptools]
 packages = ["src", "sim", "baselines", "experiments", "analysis", "visualization", "tests"]

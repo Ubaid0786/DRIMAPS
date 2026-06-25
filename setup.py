@@ -16,12 +16,12 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 setup(
     name="drimaps",
     version="1.0.0",
-    author="MAPF Research Team",
-    author_email="mapf@research.org",
+    author="Ubaid Mushtaq Mir",
+    author_email="ubaidmushtaq0786@gmail.com",
     description="Runtime deadlock resolution framework for Multi-Agent Path Finding",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/your-username/drimaps",
+    url="https://github.com/Ubaid0786/DRIMAPS",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",

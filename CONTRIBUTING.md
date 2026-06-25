@@ -15,8 +15,8 @@ Thank you for your interest in contributing to DRIMAPS! We welcome contributions
 ### 1. Fork and Clone
 
 ```bash
-git clone https://github.com/your-username/drimaps.git
-cd drimaps
+git clone https://github.com/Ubaid0786/DRIMAPS.git
+cd DRIMAPS
 ```
 
 ### 2. Set Up Development Environment
@@ -166,9 +166,9 @@ Publishing new experiments or findings?
 
 ## Questions?
 
-- Check the [Wiki](https://github.com/your-username/drimaps/wiki)
+- Check the [Wiki](https://github.com/Ubaid0786/DRIMAPS/wiki)
 - Open a Discussion for questions
-- Email: mapf@research.org
+- Email: ubaidmushtaq0786@gmail.com
 
 ## License
 

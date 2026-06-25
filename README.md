@@ -1,5 +1,8 @@
 # DRIMAPS — Detection-Guided Deadlock Escape for Reactive MAPF
 
+> [!NOTE]
+> **Active Development / Work in Progress**: This repository is actively maintained and currently undergoing benchmarking, documentation additions, and feature expansion.
+
 A reactive Multi-Agent Path Finding (MAPF) controller that is **deadlock-free by
 construction** and closes the residual completeness gap with a **detection-guided
 escape**, paired with a self-contained Gymnasium/PettingZoo simulation
@@ -261,7 +264,7 @@ DRIMAPS/
 ```bibtex
 @article{drimaps2026,
   title={DRIMAPS: Runtime Deadlock Resolution for Multi-Agent Path Finding},
-  author={Anonymous},
+  author={Mir, Ubaid Mushtaq},
   year={2026}
 }
 ```
