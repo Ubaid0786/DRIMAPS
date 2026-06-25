@@ -1,0 +1,52 @@
+cff-version: 1.2.0
+title: "DRIMAPS: Runtime Adaptive Dependency Resolution for Deadlock-Resilient Multi-Agent Path Finding"
+message: "If you use DRIMAPS in your research, please cite it using these metadata."
+type: software
+authors:
+  - family-names: "Anonymous"
+    given-names: "Authors"
+    affiliation: "Research Institution"
+date-released: 2024-06-21
+repository-code: "https://github.com/your-username/drimaps"
+license: Apache-2.0
+keywords:
+  - "multi-agent-pathfinding"
+  - "deadlock-resolution"
+  - "robotics"
+  - "simulation"
+  - "autonomous-systems"
+version: 1.0.0
+doi: "your-doi-here"
+
+preferred-citation:
+  type: conference-paper
+  authors:
+    - family-names: "Anonymous"
+      given-names: "Authors"
+      affiliation: "Research Institution"
+  title: "DRIMAPS: Runtime Adaptive Dependency Resolution for Deadlock-Resilient Multi-Agent Path Finding"
+  conference:
+    name: "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"
+    city: "TBD"
+    date-start: 2024-09-30
+    date-end: 2024-10-04
+  year: 2024
+  month: 9
+  pages: "TBD"
+
+references:
+  - type: software
+    title: "POGEMA: Multi-Agent Path Finding Benchmark"
+    authors:
+      - family-names: "Skrynnik"
+        given-names: "Alexey"
+    year: 2023
+    repository-code: "https://github.com/Tviskaron/pogema"
+    
+  - type: software
+    title: "Gymnasium: A Standard API for Reinforcement Learning"
+    authors:
+      - family-names: "Towers"
+        given-names: "Mark"
+    year: 2023
+    repository-code: "https://github.com/Farama-Foundation/Gymnasium"

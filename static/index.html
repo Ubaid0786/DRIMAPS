@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRIMAPS Research Simulator</title>
+<meta name="description" content="Professional multi-agent path finding research simulator with deadlock detection, visualization, and benchmarking.">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ═══ Top Bar ═══ -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      DRIMAPS
+    </div>
+    <div class="topbar-sep"></div>
+    <div class="topbar-section" id="topbar-context">Research Simulator</div>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-section">
+      <kbd>Space</kbd> <span style="margin:0 2px">Play</span>
+      <kbd>←→</kbd> <span>Step</span>
+    </div>
+    <div class="topbar-sep"></div>
+    <button class="topbar-btn" title="Documentation" onclick="window.open('https://github.com/aqib-m31/DRIMAPS')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    </button>
+  </header>
+
+  <!-- ═══ Navigation Rail ═══ -->
+  <nav class="nav-rail">
+    <button class="nav-item active" data-view="dashboard" data-tooltip="Dashboard" onclick="setView('dashboard')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+    </button>
+    <button class="nav-item" data-view="environment" data-tooltip="Environment" onclick="setView('environment')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+    </button>
+    <button class="nav-item" data-view="simulation" data-tooltip="Simulation" onclick="setView('simulation')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+    <button class="nav-item" data-view="analytics" data-tooltip="Analytics" onclick="setView('analytics')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+    </button>
+    <div class="nav-spacer"></div>
+    <button class="nav-item" data-view="settings" data-tooltip="Settings" onclick="setView('settings')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+  </nav>
+
+  <!-- ═══ Main Area ═══ -->
+  <main class="main-area">
+
+    <!-- ── Dashboard ── -->
+    <div class="view active" id="view-dashboard">
+      <div class="dashboard">
+        <h2>DRIMAPS Research Simulator</h2>
+        <p class="subtitle">Detection-Guided Deadlock Escape for Reactive Multi-Agent Path Finding</p>
+        <div class="dash-grid" id="dash-stats">
+          <div class="dash-card"><h4>Map Types</h4><div class="big">8</div><div class="detail">Built-in generators</div></div>
+          <div class="dash-card"><h4>Algorithms</h4><div class="big">4</div><div class="detail">DRIMAPS · PIBT · Naive-DR · Prevention</div></div>
+          <div class="dash-card"><h4>Metrics</h4><div class="big">7</div><div class="detail">ISR · CSR · Makespan · SOC · Throughput · Deadlocks · Efficiency</div></div>
+          <div class="dash-card"><h4>Runs</h4><div class="big" id="dash-run-count">0</div><div class="detail">Simulations this session</div></div>
+        </div>
+        <div class="sidebar-heading">Quick Actions</div>
+        <div class="quick-actions">
+          <div class="quick-action" onclick="setView('environment')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            <div><strong>New Environment</strong><br><span style="font-size:11px;color:var(--text-3)">Generate or import a map</span></div>
+          </div>
+          <div class="quick-action" onclick="quickRunDemo()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <div><strong>Quick Demo</strong><br><span style="font-size:11px;color:var(--text-3)">Run DRIMAPS on a warehouse map</span></div>
+          </div>
+          <div class="quick-action" onclick="setView('analytics')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+            <div><strong>View Results</strong><br><span style="font-size:11px;color:var(--text-3)">Analysis and comparison</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Environment ── -->
+    <div class="view" id="view-environment">
+      <div class="workspace">
+        <div class="workspace-sidebar">
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Map Generator</div>
+            <div class="form-row">
+              <label class="form-label">Type</label>
+              <select class="form-input" id="env-map-type"></select>
+            </div>
+            <div class="form-row">
+              <label class="form-label">Size</label>
+              <input class="form-input" type="number" id="env-size" value="32" min="4" max="256">
+            </div>
+            <div class="form-row">
+              <label class="form-label">Density</label>
+              <input class="form-input" type="number" id="env-density" value="0.2" min="0" max="1" step="0.05">
+            </div>
+            <div class="form-row">
+              <label class="form-label">Seed</label>
+              <input class="form-input" type="number" id="env-seed" value="42">
+            </div>
+            <div class="form-row" style="margin-top:8px">
+              <button class="btn btn-primary btn-block" id="btn-gen-map" onclick="generateMap()">Generate Map</button>
+            </div>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Agents</div>
+            <div class="form-row">
+              <label class="form-label">Count</label>
+              <input class="form-input" type="number" id="env-agents" value="12" min="1" max="500">
+            </div>
+            <div class="form-row" style="margin-top:8px">
+              <button class="btn btn-block" onclick="generateAgents()">Place Agents</button>
+            </div>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Map Metrics</div>
+            <table class="metrics-table" id="env-metrics">
+              <tr><td>Free cells</td><td id="env-m-free">—</td></tr>
+              <tr><td>Density</td><td id="env-m-density">—</td></tr>
+              <tr><td>Avg degree</td><td id="env-m-degree">—</td></tr>
+              <tr><td>Chokepoints</td><td id="env-m-choke">—</td></tr>
+              <tr><td>Difficulty</td><td id="env-m-diff">—</td></tr>
+            </table>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Import</div>
+            <div class="form-row">
+              <button class="btn btn-sm btn-block" onclick="document.getElementById('movingai-file').click()">Import .map File</button>
+              <input type="file" id="movingai-file" accept=".map" style="display:none" onchange="importMovingAI(event)">
+            </div>
+          </div>
+        </div>
+        <div class="workspace-main">
+          <div class="toolbar">
+            <span class="toolbar-label" id="env-info">No map loaded</span>
+            <div class="toolbar-spacer"></div>
+            <button class="btn btn-sm" onclick="clearAgents()">Clear Agents</button>
+            <button class="btn btn-sm btn-primary" onclick="proceedToSim()">Run Simulation →</button>
+          </div>
+          <div class="workspace-canvas">
+            <canvas id="env-canvas"></canvas>
+            <div class="empty-state" id="env-empty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              <div>Generate a map to begin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Simulation ── -->
+    <div class="view" id="view-simulation">
+      <div class="workspace">
+        <div class="workspace-sidebar">
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Algorithm</div>
+            <div class="form-row">
+              <select class="form-input" id="sim-algorithm" style="flex:1"></select>
+            </div>
+            <div class="form-row" style="margin-top:8px">
+              <button class="btn btn-primary btn-block" id="btn-run-sim" onclick="runSimulation()">▶ Run Simulation</button>
+            </div>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Results</div>
+            <table class="metrics-table" id="sim-metrics">
+              <tr><td>ISR</td><td id="m-isr">—</td></tr>
+              <tr><td>Makespan</td><td id="m-makespan">—</td></tr>
+              <tr><td>Sum of costs</td><td id="m-soc">—</td></tr>
+              <tr><td>Runtime</td><td id="m-runtime">—</td></tr>
+              <tr><td>Collisions</td><td id="m-collisions">—</td></tr>
+              <tr><td>Deadlocks</td><td id="m-deadlocks">—</td></tr>
+              <tr><td>Resolved</td><td id="m-resolved">—</td></tr>
+              <tr><td>Replanned</td><td id="m-replanned">—</td></tr>
+            </table>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Display</div>
+            <div class="form-row">
+              <label style="font-size:12px;display:flex;align-items:center;gap:6px;cursor:pointer">
+                <input type="checkbox" id="opt-trails" checked> Trails
+              </label>
+            </div>
+            <div class="form-row">
+              <label style="font-size:12px;display:flex;align-items:center;gap:6px;cursor:pointer">
+                <input type="checkbox" id="opt-goals" checked> Goals
+              </label>
+            </div>
+            <div class="form-row">
+              <label style="font-size:12px;display:flex;align-items:center;gap:6px;cursor:pointer">
+                <input type="checkbox" id="opt-ids" checked> Agent IDs
+              </label>
+            </div>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-heading">Export</div>
+            <div class="btn-group" style="flex-wrap:wrap">
+              <button class="btn btn-sm" onclick="exportJSON()">JSON</button>
+              <button class="btn btn-sm" onclick="exportCSV()">CSV</button>
+              <button class="btn btn-sm" onclick="exportPNG()">PNG</button>
+            </div>
+          </div>
+        </div>
+        <div class="workspace-main">
+          <div class="toolbar" id="sim-toolbar">
+            <button class="btn btn-sm" onclick="simStep(-1)" title="Previous step">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+            </button>
+            <button class="btn btn-sm btn-primary" id="btn-play" onclick="togglePlay()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+            <button class="btn btn-sm" onclick="simStep(1)" title="Next step">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+            </button>
+            <button class="btn btn-sm" onclick="simReset()" title="Reset">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            </button>
+            <div class="toolbar-sep"></div>
+            <div class="timeline-bar" id="timeline" onclick="seekTimeline(event)">
+              <div class="timeline-fill" id="timeline-fill" style="width:0%"></div>
+            </div>
+            <div class="step-indicator" id="step-display">t=0 / 0</div>
+            <div class="toolbar-sep"></div>
+            <div class="speed-slider">
+              <span class="toolbar-label">Speed</span>
+              <input type="range" id="speed-slider" min="1" max="30" value="8">
+              <span class="toolbar-label" id="speed-label">8fps</span>
+            </div>
+          </div>
+          <div class="workspace-canvas">
+            <canvas id="sim-canvas"></canvas>
+            <div class="empty-state" id="sim-empty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <div>Configure an environment and run a simulation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Analytics ── -->
+    <div class="view" id="view-analytics">
+      <div class="analytics-panel">
+        <h2 style="font-size:16px;margin-bottom:4px">Experiment Results</h2>
+        <p class="subtitle" style="margin-bottom:16px">All simulation runs from this session</p>
+        <table class="results-table" id="results-table">
+          <thead>
+            <tr>
+              <th>#</th><th>Algorithm</th><th>Map</th><th>Size</th>
+              <th>Agents</th><th>ISR</th><th>Makespan</th><th>SOC</th>
+              <th>Deadlocks</th><th>Collisions</th><th>Runtime</th>
+            </tr>
+          </thead>
+          <tbody id="results-tbody"></tbody>
+        </table>
+        <div class="empty-state" id="analytics-empty" style="height:200px">
+          <div>No results yet — run a simulation first</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Settings ── -->
+    <div class="view" id="view-settings">
+      <div class="dashboard" style="max-width:640px">
+        <h2 style="font-size:16px;margin-bottom:12px">Algorithm Configuration</h2>
+        <div id="settings-form"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ═══ Status Bar ═══ -->
+  <footer class="statusbar">
+    <div class="statusbar-item"><div class="statusbar-dot"></div> Ready</div>
+    <div class="statusbar-item" id="sb-map">No map</div>
+    <div class="statusbar-item" id="sb-agents">0 agents</div>
+    <div class="statusbar-spacer"></div>
+    <div class="statusbar-item" id="sb-status">DRIMAPS v1.0</div>
+  </footer>
+
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

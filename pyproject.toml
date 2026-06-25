@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "drimaps"
+version = "1.0.0"
+description = "Deadlock-Resilient Intelligent Multi-Agent Path Finding System - Runtime framework for MAPF deadlock resolution"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "Apache License 2.0"}
+authors = [
+    {name = "MAPF Research Team", email = "mapf@research.org"},
+]
+keywords = [
+    "multi-agent-pathfinding",
+    "deadlock-resolution",
+    "robotics",
+    "simulation",
+    "gymnasium",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy>=1.24.0",
+    "matplotlib>=3.7.0",
+    "scipy>=1.10.0",
+    "gymnasium>=0.29.0",
+    "tqdm>=4.65.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "isort>=5.12.0",
+]
+paper = [
+    "scipy>=1.10.0",
+    "pandas>=1.5.0",
+    "seaborn>=0.12.0",
+]
+docs = [
+    "sphinx>=5.0.0",
+    "sphinx-rtd-theme>=1.2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-username/drimaps"
+Documentation = "https://github.com/your-username/drimaps/wiki"
+Repository = "https://github.com/your-username/drimaps.git"
+"Bug Tracker" = "https://github.com/your-username/drimaps/issues"
+
+[tool.setuptools]
+packages = ["src", "sim", "baselines", "experiments", "analysis", "visualization", "tests"]
+
+[tool.setuptools.package-data]
+sim = ["*.py"]
+src = ["*.py"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["src", "sim"]
+omit = ["*/tests/*", "*/test_*.py"]

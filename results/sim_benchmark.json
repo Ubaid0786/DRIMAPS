@@ -1,0 +1,132 @@
+{
+  "throughput": [
+    {
+      "size": 16,
+      "agents": 16,
+      "steps": 200,
+      "sec": 0.3545,
+      "steps_per_sec": 564.2,
+      "agent_steps_per_sec": 9027.3
+    },
+    {
+      "size": 16,
+      "agents": 64,
+      "steps": 200,
+      "sec": 1.5503,
+      "steps_per_sec": 129.0,
+      "agent_steps_per_sec": 8256.3
+    },
+    {
+      "size": 16,
+      "agents": 112,
+      "steps": 200,
+      "sec": 3.0831,
+      "steps_per_sec": 64.9,
+      "agent_steps_per_sec": 7265.3
+    },
+    {
+      "size": 32,
+      "agents": 16,
+      "steps": 200,
+      "sec": 0.4112,
+      "steps_per_sec": 486.4,
+      "agent_steps_per_sec": 7782.6
+    },
+    {
+      "size": 32,
+      "agents": 64,
+      "steps": 200,
+      "sec": 1.7638,
+      "steps_per_sec": 113.4,
+      "agent_steps_per_sec": 7256.9
+    },
+    {
+      "size": 32,
+      "agents": 256,
+      "steps": 200,
+      "sec": 9.8725,
+      "steps_per_sec": 20.3,
+      "agent_steps_per_sec": 5186.1
+    },
+    {
+      "size": 64,
+      "agents": 16,
+      "steps": 200,
+      "sec": 0.4012,
+      "steps_per_sec": 498.5,
+      "agent_steps_per_sec": 7975.4
+    },
+    {
+      "size": 64,
+      "agents": 64,
+      "steps": 200,
+      "sec": 1.7668,
+      "steps_per_sec": 113.2,
+      "agent_steps_per_sec": 7244.7
+    },
+    {
+      "size": 64,
+      "agents": 256,
+      "steps": 200,
+      "sec": 10.3748,
+      "steps_per_sec": 19.3,
+      "agent_steps_per_sec": 4935.0
+    }
+  ],
+  "monitor_overhead": [
+    {
+      "agents": 16,
+      "on": 8244.0,
+      "off": 9101.6,
+      "overhead_pct": 9.4
+    },
+    {
+      "agents": 64,
+      "on": 7383.0,
+      "off": 8732.5,
+      "overhead_pct": 15.5
+    },
+    {
+      "agents": 256,
+      "on": 5199.2,
+      "off": 8137.2,
+      "overhead_pct": 36.1
+    }
+  ],
+  "determinism": {
+    "deterministic": true,
+    "trials": 3
+  },
+  "collision_free": {
+    "overlaps": 0,
+    "steps": 500,
+    "configs": 2
+  },
+  "wfg_vs_stagnation": {
+    "random": {
+      "stagnation_flagged_steps": 452,
+      "wfg_deadlock_steps": 2,
+      "wfg_confirmed_episodes": 2
+    },
+    "greedy": {
+      "stagnation_flagged_steps": 1735,
+      "wfg_deadlock_steps": 1142,
+      "wfg_confirmed_episodes": 23
+    },
+    "maps": [
+      "corridor",
+      "bottleneck",
+      "warehouse",
+      "room",
+      "maze"
+    ],
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "steps_per_run": 120,
+    "stagnation_flagged_steps": 452,
+    "wfg_confirmed_episodes": 2
+  }
+}
